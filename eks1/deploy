@@ -12,13 +12,6 @@
           labels:
             app: nexus-server
         spec:
-          initContainers:
-          - name: volume-mount-hack
-            image: busybox
-            command: ["sh", "-c", "chown -R 200:200 /nexus-data"]
-            volumeMounts:
-            - name: nexus-data
-              mountPath: /nexus-data
           containers:
             - name: nexus
               image: sonatype/nexus3:latest
@@ -36,6 +29,4 @@
                   mountPath: /nexus-data
           volumes:
             - name: nexus-data
-              persistentVolumeClaim:
-                claimName: nexus-pvc
-
+              emptyDir: {}
