@@ -58,7 +58,7 @@ resource "aws_security_group" "eks_security_group" {
    }
 }
 resource "aws_eks_cluster" "eks_cluster_demo" {
-  name     = "eks_cluster_demo"
+  name     = var.cluster-name
   role_arn = aws_iam_role.eks_role_demo.arn
 
   vpc_config {

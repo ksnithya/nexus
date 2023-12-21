@@ -5,7 +5,7 @@ resource "aws_vpc" "eks_vpc" {
   # VPC tags
   tags = {
     Name                        = "terraform_eks_cluster_demo"
-    "kubernetes.io/cluster/aws_eks_cluster.eks_cluster_demo.name" = "shared"
+    "kubernetes.io/cluster/${var.cluster-name}" = "shared"
     "kubernetes.io/role/elb"    = 1
   }
 }
@@ -24,7 +24,7 @@ resource "aws_subnet" "eks_subnet_1" {
   # A map of tags to assign to the resource.
   tags = {
     Name                        = "eks_subnet-ap-south-1a"
-    "kubernetes.io/cluster/aws_eks_cluster.eks_cluster_demo.name" = "shared"
+    "kubernetes.io/cluster/${var.cluster-name}" = "shared"
     "kubernetes.io/role/elb"    = 1
   }
   # Required for EKS. Instances launched into the subnet should be assigned a public IP address.
@@ -45,7 +45,7 @@ resource "aws_subnet" "eks_subnet_2" {
   # A map of tags to assign to the resource.
   tags = {
     Name                        = "eks_subnet-ap-south-2a"
-    "kubernetes.io/cluster/aws_eks_cluster.eks_cluster_demo.name" = "shared"
+    "kubernetes.io/cluster/${var.cluster-name}" = "shared"
     "kubernetes.io/role/elb"    = 1
   }
 
